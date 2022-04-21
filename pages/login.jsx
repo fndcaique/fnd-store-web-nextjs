@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import { handleLogin } from '../store/reducers/user';
 
-export default function login() {
+export default function Login() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
