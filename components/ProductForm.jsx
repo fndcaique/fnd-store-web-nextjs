@@ -1,25 +1,55 @@
-import { useState } from 'react'
+import Button from './Button'
+import Input from './Input'
 
-export default function ProductForm({ submitMessage = 'Add', handleSubmit }) {
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [quantity, setQuantity] = useState('')
-
-  const privateHandleSubmit = (event) => {
-    event.preventDefault();
-    handleSubmit({
-      name,
-      price: Number(price),
-      quantity: Number(quantity),
-    });
-  }
+export default function ProductForm({
+  product: { name, price, quantity },
+  handleInputChange,
+  submitMessage = 'Adicionar',
+  cancelMessage = 'Cancelar',
+  isFormValid,
+  isFormEmpty,
+  handleSubmit,
+  handleReset,
+}) {
 
   return (
-    <form className='product-form' onSubmit={ privateHandleSubmit }>
-      <Input label='Name' value={ name } handleChange={ setName } />
-      <Input label='Price' value={ price } type='number' handleChange={ setPrice } />
-      <Input label='Quantity' value={ quantity } type='number' handleChange={ setQuantity } />
-      <Button>{ submitMessage }</Button>
-    </form>
-  )
+    <form className='product-form' onSubmit={ (event) => {
+      event.preventDefault();
+      handleSubmit();
+    } }>
+      <Input
+        label='Nome'
+        name='name'
+        value={ name }
+        onChange={ handleInputChange }
+      />
+      <Input
+        label='Preço'
+        name='price'
+        value={ price }
+        type='number'
+        onChange={ handleInputChange }
+      />
+      <Input
+        label='Quantidade'
+        name='quantity'
+        value={ quantity }
+        type='number'
+        onChange={ handleInputChange }
+      />
+      <Button
+        type='submit'
+        disabled={ !isFormValid() }
+      >
+        { submitMessage }
+      </Button>
+      <Button
+        type='reset'
+        disabled={ isFormEmpty() }
+        onClick={ handleReset }
+      >
+        { cancelMessage }
+      </Button>
+    </form >
+  );
 }
