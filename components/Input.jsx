@@ -2,12 +2,13 @@
 export default function Input({
   label,
   handleChange,
-  id,
+  id = `id-input-${label}`.toLowerCase(),
   type = 'text',
+  name = `${label}`.toLowerCase(),
   ...props }) {
 
   const inputProps = {
-    id, type, ...props,
+    id, type, name, ...props,
   };
 
   return (
