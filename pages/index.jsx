@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -6,6 +7,16 @@ export default function Home() {
       <Head>
         <title>Store</title>
       </Head>
+
+      <nav>
+        <ul>
+          <li>
+            <Link href='/products'>
+              <a>Products</a>
+            </Link>
+          </li>
+        </ul>
+      </nav>
 
       <main>
         <section>
