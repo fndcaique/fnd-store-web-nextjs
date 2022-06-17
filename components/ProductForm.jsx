@@ -2,7 +2,7 @@ import Button from './Button'
 import Input from './Input'
 
 export default function ProductForm({
-  product: { name, price, quantity },
+  product: { name, sellPrice, buyPrice, quantity },
   handleInputChange,
   submitMessage = 'Adicionar',
   cancelMessage = 'Cancelar',
@@ -24,9 +24,17 @@ export default function ProductForm({
         onChange={ handleInputChange }
       />
       <Input
-        label='Preço'
-        name='price'
-        value={ price }
+        label='Preço de compra'
+        name='buyPrice'
+        value={ buyPrice }
+        type='number'
+        onChange={ handleInputChange }
+      />
+
+      <Input
+        label='Preço de venda'
+        name='sellPrice'
+        value={ sellPrice }
         type='number'
         onChange={ handleInputChange }
       />

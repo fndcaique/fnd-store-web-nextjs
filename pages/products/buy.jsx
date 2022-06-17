@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import Button from '../../components/Button';
 import ProductForm from '../../components/ProductForm';
 import { ProductsTable } from '../../components/ProductsTable';
+import { getProducts, saveProducts } from '../../services/products';
 
 const PRODUCT_INITIAL_VALUE = {
   name: '',
-  price: '',
+  sellPrice: '',
+  buyPrice: '',
   quantity: '',
 };
 
@@ -20,16 +22,8 @@ export default function BuyProducts() {
   const router = useRouter();
 
   useEffect(() => {
-    setProducts(loadProducts());
+    setProducts(getProducts());
   }, []);
-
-  const saveProducts = (data) => {
-    localStorage.setItem('products', JSON.stringify(data));
-  }
-
-  const loadProducts = () => {
-    return JSON.parse(localStorage.getItem('products')) || [];
-  }
 
   const handleInputChange = ({ target: { name, value } }) => {
     setProduct({ ...product, [name]: value });
@@ -41,8 +35,8 @@ export default function BuyProducts() {
   }
 
   const isFormEmpty = () => {
-    const { name, price, quantity } = product;
-    return !(name.length || price.length || quantity.length);
+    // const { name, sellPrice, buyPrice, quantity } = product;
+    return Object.values(product).every(value => value.length === 0);
   }
 
   const resetForm = () => {

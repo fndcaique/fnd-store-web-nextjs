@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import ProductsList from '../../components/ProductsList';
+import { getProducts } from '../../services/products';
 
 
 export default function Products() {
@@ -8,6 +10,8 @@ export default function Products() {
       <Link href='/products/buy'>
         <a>Comprar</a>
       </Link>
+
+      <ProductsList products={ getProducts() } />
     </div>
   );
 }
