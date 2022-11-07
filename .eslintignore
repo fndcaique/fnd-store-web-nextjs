@@ -1,0 +1,7 @@
+!.storybook
+!.jest
+**/node_modules/*
+**/out/*
+**/.next/*
+/node_modules/*
+**/cypress/*

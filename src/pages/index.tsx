@@ -1,4 +1,5 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -8,9 +9,9 @@ export default function Home() {
       </Head>
 
       <main>
-        <section>
-          Imagens
-        </section>
+
+        <Link href="/products/buy" >Comprar</Link>
+
       </main>
 
       <footer>
@@ -20,5 +21,5 @@ export default function Home() {
         </span>
       </footer>
     </>
-  )
+  );
 }

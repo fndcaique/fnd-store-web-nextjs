@@ -10,7 +10,7 @@ export function ProductsTable({
     return products.reduce((subtotal, { price, quantity }) => {
       return subtotal + price * quantity;
     }, 0);
-  }
+  };
 
   return (
     <table>
@@ -25,21 +25,23 @@ export function ProductsTable({
       </thead>
       <tbody>
         { products.map(({ name, price, quantity }, index) => (
-          <tr key={ name + price + quantity + index }>
+          <tr key={name + price + quantity + index}>
             <td>{ name }</td>
             <td>{ price }</td>
             <td>{ quantity }</td>
             <td>{ price * quantity }</td>
-            <td style={ { display: 'flex' } }>
+            <td style={{
+              display: 'flex', 
+            }}>
               <Button
-                type='button'
-                onClick={ () => handleDeleteProduct(index) }
+                type="button"
+                onClick={() => handleDeleteProduct(index)}
               >
                 Remover
               </Button>
               <Button
-                type='button'
-                onClick={ () => handleEditProduct(index) }
+                type="button"
+                onClick={() => handleEditProduct(index)}
               >
                 Editar
               </Button>
