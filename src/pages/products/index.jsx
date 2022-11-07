@@ -10,7 +10,7 @@ export default function Products() {
         Comprar
       </Link>
 
-      <ProductsList products={getProducts()} />
+      <ProductsList products={ getProducts() } />
     </div>
   );
 }

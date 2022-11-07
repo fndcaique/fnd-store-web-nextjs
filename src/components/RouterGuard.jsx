@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import UserService from '../services/user.service';
 import { handleLogin } from '../store/reducers/user';
-
 export default function RouterGuard({ children }) {
   const router = useRouter();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -12,14 +12,11 @@ export default function RouterGuard({ children }) {
   useEffect(() => {
     const publicPaths = ['/login', '/404'];
     if (!isAuthenticated && !publicPaths.includes(router.pathname)) {
-      const localStorageUser = localStorage.getItem('user');
+      const localStorageUser = UserService.getFromLocalStorage();
       if (localStorageUser) {
-        const user = JSON.parse(localStorageUser);
-        dispatch(handleLogin(user));
+        dispatch(handleLogin(localStorageUser));
       } else {
-        router.push('/login', {
-          returnPath: router.asPath,
-        });
+        router.push('/login', router.asPath);
       }
     }
   });

@@ -26,24 +26,24 @@ export function ProductsTable({
       </thead>
       <tbody>
         { products.map(({ name, buyPrice, sellPrice, quantity }, index) => (
-          <tr key={name + buyPrice + quantity + index}>
+          <tr key={ name + buyPrice + quantity + index }>
             <td>{ name }</td>
             <td>{ buyPrice }</td>
             <td>{ sellPrice }</td>
             <td>{ quantity }</td>
             <td>{ buyPrice * quantity }</td>
-            <td style={{
-              display: 'flex', 
-            }}>
+            <td style={ {
+              display: 'flex',
+            } }>
               <Button
                 type="button"
-                onClick={() => handleDeleteProduct(index)}
+                onClick={ () => handleDeleteProduct(index) }
               >
                 Remover
               </Button>
               <Button
                 type="button"
-                onClick={() => handleEditProduct(index)}
+                onClick={ () => handleEditProduct(index) }
               >
                 Editar
               </Button>

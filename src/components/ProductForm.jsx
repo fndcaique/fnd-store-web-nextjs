@@ -13,40 +13,40 @@ export default function ProductForm({
 }) {
 
   return (
-    <form className="product-form" onSubmit={(event) => {
+    <form className="product-form" onSubmit={ (event) => {
       event.preventDefault();
       handleSubmit();
-    }}>
+    } }>
       <Input
         label="Nome"
         name="name"
-        value={name}
-        onChange={handleInputChange}
+        value={ name }
+        onChange={ handleInputChange }
       />
       <Input
         label="Preço"
         name="price"
-        value={price}
+        value={ price }
         type="number"
-        onChange={handleInputChange}
+        onChange={ handleInputChange }
       />
       <Input
         label="Quantidade"
         name="quantity"
-        value={quantity}
+        value={ quantity }
         type="number"
-        onChange={handleInputChange}
+        onChange={ handleInputChange }
       />
       <Button
         type="submit"
-        disabled={!isFormValid()}
+        disabled={ !isFormValid() }
       >
         { submitMessage }
       </Button>
       <Button
         type="reset"
-        disabled={isFormEmpty()}
-        onClick={handleReset}
+        disabled={ isFormEmpty() }
+        onClick={ handleReset }
       >
         { cancelMessage }
       </Button>

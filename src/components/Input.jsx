@@ -5,7 +5,7 @@ export default function Input({
   id = `id-input-${label}`.toLowerCase(),
   type = 'text',
   name = `${label}`.toLowerCase(),
-  ...props 
+  ...props
 }) {
 
   const inputProps = {
@@ -17,9 +17,9 @@ export default function Input({
 
   return (
     <div className="input-field">
-      { label && id && <label htmlFor={id}>{ `${label}:` }</label> }
+      { label && id && <label htmlFor={ id }>{ `${label}:` }</label> }
       <input
-        {...inputProps}
+        { ...inputProps }
         onChange={
           handleChange ? ({ target: { value }}) => handleChange(value)
             : props.onChange

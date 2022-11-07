@@ -2,7 +2,7 @@
 const Button = ({ children, ...restProps }) => {
   return (
     <div className="btn-container">
-      <button {...restProps}>{ children }</button>
+      <button { ...restProps }>{ children }</button>
     </div>
   );
 };

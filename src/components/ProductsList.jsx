@@ -6,8 +6,8 @@ export default function ProductsList({ products }) {
     <div className="products-list">
       <ul>
         { products.map((product) => (
-          <li key={product.name + product.quantity}>
-            <ProductItem {...product} />
+          <li key={ product.name + product.quantity }>
+            <ProductItem { ...product } />
           </li>
         )) }
       </ul>

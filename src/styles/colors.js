@@ -8,8 +8,9 @@ export const warning = '#D39834';
 export const danger = '#8C1538';
 
 export const grey = '#ccc';
+export const darkgrey = '#333';
 export const white = '#f3f3f3';
-export const black = '#2d2d2d';
+export const black = '#111';
 
 const colors = {
   primary,
@@ -22,6 +23,7 @@ const colors = {
   danger,
 
   grey,
+  darkgrey,
   white,
   black,
 };
