@@ -8,11 +8,15 @@ export default function Home() {
         <title>Store</title>
       </Head>
 
-      <main>
-
-        <Link href="/products/buy" >Comprar</Link>
-
-      </main>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/products">
+              Products
+            </Link>
+          </li>
+        </ul>
+      </nav>
 
       <footer>
         Powered by{ ' ' }

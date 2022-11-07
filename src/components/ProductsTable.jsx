@@ -6,9 +6,9 @@ export function ProductsTable({
   handleEditProduct,
 }) {
 
-  const totalPrice = () => {
-    return products.reduce((subtotal, { price, quantity }) => {
-      return subtotal + price * quantity;
+  const totalBuyPrice = () => {
+    return products.reduce((subtotal, { buyPrice, quantity }) => {
+      return subtotal + buyPrice * quantity;
     }, 0);
   };
 
@@ -17,19 +17,21 @@ export function ProductsTable({
       <thead>
         <tr>
           <th>Nome</th>
-          <th>Preço Unit.</th>
+          <th>Preço unit. de compra</th>
+          <th>Preço unit. de venda</th>
           <th>Quantidade</th>
           <th>Total</th>
           <th>Ação</th>
         </tr>
       </thead>
       <tbody>
-        { products.map(({ name, price, quantity }, index) => (
-          <tr key={name + price + quantity + index}>
+        { products.map(({ name, buyPrice, sellPrice, quantity }, index) => (
+          <tr key={name + buyPrice + quantity + index}>
             <td>{ name }</td>
-            <td>{ price }</td>
+            <td>{ buyPrice }</td>
+            <td>{ sellPrice }</td>
             <td>{ quantity }</td>
-            <td>{ price * quantity }</td>
+            <td>{ buyPrice * quantity }</td>
             <td style={{
               display: 'flex', 
             }}>
@@ -52,7 +54,7 @@ export function ProductsTable({
           <td>Total</td>
           <td></td>
           <td></td>
-          <td>{ totalPrice() }</td>
+          <td>{ totalBuyPrice() }</td>
         </tr>
       </tbody>
     </table >
