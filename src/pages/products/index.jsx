@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import ProductsList from '../../components/ProductsList';
+import { getProducts } from '../../services/products';
 
 export default function Products() {
   return (
@@ -7,6 +9,8 @@ export default function Products() {
       <Link href="/products/buy">
         Comprar
       </Link>
+
+      <ProductsList products={getProducts()} />
     </div>
   );
 }
