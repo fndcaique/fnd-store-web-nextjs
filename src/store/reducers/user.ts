@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import UserService from '../../services/user.service';
+import { User } from '../../types/user.type';
 
-const initialState = {
+const initialState: User = {
   login: '',
   password: '',
   isAuthenticated: false,
@@ -15,15 +17,20 @@ export const userSlice = createSlice({
       const newState = {
         login,
         password,
-        isAuthenticated: true, 
+        isAuthenticated: true,
       };
-      localStorage.setItem('user', JSON.stringify(newState));
+      UserService.saveOnLocalStorage(newState);
       return newState;
+    },
+    handleLogout() {
+      UserService.removeFromLocalStorage();
+      return initialState;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { handleLogin } = userSlice.actions;
+export const { handleLogin, handleLogout } = userSlice.actions;
 
-export default userSlice.reducer;
+const UserReducer = userSlice.reducer;
+export default UserReducer ;

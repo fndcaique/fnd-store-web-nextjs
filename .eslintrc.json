@@ -31,10 +31,8 @@
     "react/jsx-curly-spacing": [
       "warn",
       {
-        "when": "never",
-        "children": {
-          "when": "always"
-        }
+        "when": "always",
+        "children": true
       }
     ],
     "object-curly-newline": [

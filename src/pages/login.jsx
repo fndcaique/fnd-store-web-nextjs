@@ -15,28 +15,27 @@ export default function Login() {
     event.preventDefault();
     dispatch(handleLogin({
       login,
-      password, 
+      password,
     }));
-    console.log(router);
     router.push(router.asPath || '/');
   };
 
   return (
     <div className="login-page">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit }>
         <Input
           id="login-input"
           label="Login"
-          value={login}
-          placeholder="your email or username"
-          handleChange={setLogin} />
+          value={ login }
+          placeholder="seu email ou nome de usuário"
+          handleChange={ setLogin } />
         <Input
           id="password-input"
-          label="Password"
+          label="Senha"
           type="password"
           placeholder="your password ****"
-          handleChange={setPassword} />
-        <Button type="submit">Login</Button>
+          handleChange={ setPassword } />
+        <Button type="submit">Entrar</Button>
       </form>
     </div>
   );

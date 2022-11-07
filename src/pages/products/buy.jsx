@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import ProductForm from '../../components/ProductForm';
 import { ProductsTable } from '../../components/ProductsTable';
@@ -34,7 +34,7 @@ export default function BuyProducts() {
   const handleInputChange = ({ target: { name, value }}) => {
     setProduct({
       ...product,
-      [name]: value, 
+      [name]: value,
     });
   };
 
@@ -87,23 +87,23 @@ export default function BuyProducts() {
       <h1>Comprar Produtos</h1>
       <section>
         <ProductForm
-          product={product}
-          handleInputChange={handleInputChange}
-          submitMessage={isEditing ? 'Editar' : 'Adicionar'}
-          isFormValid={isFormValid}
-          isFormEmpty={isFormEmpty}
-          handleSubmit={handleSubmitProduct}
-          handleReset={resetForm}
+          product={ product }
+          handleInputChange={ handleInputChange }
+          submitMessage={ isEditing ? 'Editar' : 'Adicionar' }
+          isFormValid={ isFormValid }
+          isFormEmpty={ isFormEmpty }
+          handleSubmit={ handleSubmitProduct }
+          handleReset={ resetForm }
         />
       </section>
       <section>
         <ProductsTable
-          products={products}
-          handleDeleteProduct={handleDeleteProduct}
-          handleEditProduct={handleEditProduct}
+          products={ products }
+          handleDeleteProduct={ handleDeleteProduct }
+          handleEditProduct={ handleEditProduct }
         />
       </section>
-      <Button type="button" onClick={handleFinalizeBuy} >Finalizar Compra</Button>
+      <Button type="button" onClick={ handleFinalizeBuy } >Finalizar Compra</Button>
     </div>
   );
 }
