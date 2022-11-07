@@ -5,22 +5,26 @@ export default function Input({
   id = `id-input-${label}`.toLowerCase(),
   type = 'text',
   name = `${label}`.toLowerCase(),
-  ...props }) {
+  ...props 
+}) {
 
   const inputProps = {
-    id, type, name, ...props,
+    id,
+    type,
+    name,
+    ...props,
   };
 
   return (
-    <div className='input-field'>
-      { label && id && <label htmlFor={ id }>{ `${label}:` }</label> }
+    <div className="input-field">
+      { label && id && <label htmlFor={id}>{ `${label}:` }</label> }
       <input
-        { ...inputProps }
+        {...inputProps}
         onChange={
-          handleChange ? ({ target: { value } }) => handleChange(value)
+          handleChange ? ({ target: { value }}) => handleChange(value)
             : props.onChange
         }
       />
     </div>
-  )
+  );
 }

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import ProductForm from '../../components/ProductForm';
 import { ProductsTable } from '../../components/ProductsTable';
-import { getProducts, saveProducts } from '../../services/products';
+import { getProducts } from '../../services/products';
 
 const PRODUCT_INITIAL_VALUE = {
   name: '',
@@ -25,28 +25,34 @@ export default function BuyProducts() {
     setProducts(getProducts());
   }, []);
 
-  const handleInputChange = ({ target: { name, value } }) => {
-    setProduct({ ...product, [name]: value });
-  }
+  const saveProducts = (data) => {
+    localStorage.setItem('products', JSON.stringify(data));
+  };
+
+  const handleInputChange = ({ target: { name, value }}) => {
+    setProduct({
+      ...product,
+      [name]: value, 
+    });
+  };
 
   const isValidNumber = (numberOrStrNumber) => {
     const realNumber = Number(numberOrStrNumber);
     return realNumber > 0;
-  }
+  };
 
   const isFormEmpty = () => {
-    // const { name, sellPrice, buyPrice, quantity } = product;
     return Object.values(product).every(value => value.length === 0);
-  }
+  };
 
   const resetForm = () => {
     setProduct(PRODUCT_INITIAL_VALUE);
-  }
+  };
 
   const isFormValid = () => {
     const { quantity } = product;
     return !isFormEmpty() && isValidNumber(quantity);
-  }
+  };
 
   const handleSubmitProduct = () => {
     if (isEditing) {
@@ -57,44 +63,44 @@ export default function BuyProducts() {
       saveProducts([...products, product]);
     }
     resetForm();
-  }
+  };
 
   const handleDeleteProduct = (index) => {
     setProducts(products.filter((product, idx) => idx !== index));
-  }
+  };
 
   const handleEditProduct = (index) => {
     setIsEditing(true);
     setIdToEdit(index);
     setProduct(products.find((product, idx) => idx === index));
-  }
+  };
 
   const handleFinalizeBuy = () => {
     router.push('/products');
-  }
+  };
 
   return (
-    <div className='buy-page'>
+    <div className="buy-page">
       <h1>Comprar Produtos</h1>
       <section>
         <ProductForm
-          product={ product }
-          handleInputChange={ handleInputChange }
-          submitMessage={ isEditing ? 'Editar' : 'Adicionar' }
-          isFormValid={ isFormValid }
-          isFormEmpty={ isFormEmpty }
-          handleSubmit={ handleSubmitProduct }
-          handleReset={ resetForm }
+          product={product}
+          handleInputChange={handleInputChange}
+          submitMessage={isEditing ? 'Editar' : 'Adicionar'}
+          isFormValid={isFormValid}
+          isFormEmpty={isFormEmpty}
+          handleSubmit={handleSubmitProduct}
+          handleReset={resetForm}
         />
       </section>
       <section>
         <ProductsTable
-          products={ products }
-          handleDeleteProduct={ handleDeleteProduct }
-          handleEditProduct={ handleEditProduct }
+          products={products}
+          handleDeleteProduct={handleDeleteProduct}
+          handleEditProduct={handleEditProduct}
         />
       </section>
-      <Button type='button' onClick={ handleFinalizeBuy } >Finalizar Compra</Button>
+      <Button type="button" onClick={handleFinalizeBuy} >Finalizar Compra</Button>
     </div>
   );
 }
