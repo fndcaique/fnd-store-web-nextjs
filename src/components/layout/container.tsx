@@ -6,11 +6,11 @@ const ContainerStyled = styled.div`
   padding: 14px;
 `;
 
-interface Props  {
-  className?: string
+interface Props {
+  className?: string;
   children?: React.ReactNode;
 }
 
 export function Container({ className = 'container', children }: Props) {
-  return <ContainerStyled className={ className } >{ children }</ContainerStyled>;
+  return <ContainerStyled className={className}>{children}</ContainerStyled>;
 }

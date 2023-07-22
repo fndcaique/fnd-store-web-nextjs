@@ -28,7 +28,7 @@ const HeaderStyled = styled.header`
 
 export default function Header() {
   const isAuthenticated = useSelector<RootState, boolean>(
-    (state) => state.user.isAuthenticated,
+    (state) => state.user.isAuthenticated
   );
 
   const dispatch = useDispatch();
@@ -36,10 +36,18 @@ export default function Header() {
   return (
     <HeaderStyled>
       <Container>
-        <h1 className="app-title">
-          <Link href="/">FND Store</Link>
+        <h1 className='app-title'>
+          <Link href='/'>FND Store</Link>
         </h1>
-        <div>{ isAuthenticated ? <Link href="/login" onClick={ () => dispatch(handleLogout()) }>Sair</Link> : <Link href="/login">Entrar</Link> }</div>
+        <div>
+          {isAuthenticated ? (
+            <Link href='/login' onClick={() => dispatch(handleLogout())}>
+              Sair
+            </Link>
+          ) : (
+            <Link href='/login'>Entrar</Link>
+          )}
+        </div>
       </Container>
     </HeaderStyled>
   );

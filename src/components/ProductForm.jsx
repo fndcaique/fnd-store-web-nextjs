@@ -9,47 +9,42 @@ export default function ProductForm({
   isFormValid,
   isFormEmpty,
   handleSubmit,
-  handleReset,
+  handleReset
 }) {
-
   return (
-    <form className="product-form" onSubmit={ (event) => {
-      event.preventDefault();
-      handleSubmit();
-    } }>
+    <form
+      className='product-form'
+      onSubmit={(event) => {
+        event.preventDefault();
+        handleSubmit();
+      }}
+    >
       <Input
-        label="Nome"
-        name="name"
-        value={ name }
-        onChange={ handleInputChange }
+        label='Nome'
+        name='name'
+        value={name}
+        onChange={handleInputChange}
       />
       <Input
-        label="Preço"
-        name="price"
-        value={ price }
-        type="number"
-        onChange={ handleInputChange }
+        label='Preço'
+        name='price'
+        value={price}
+        type='number'
+        onChange={handleInputChange}
       />
       <Input
-        label="Quantidade"
-        name="quantity"
-        value={ quantity }
-        type="number"
-        onChange={ handleInputChange }
+        label='Quantidade'
+        name='quantity'
+        value={quantity}
+        type='number'
+        onChange={handleInputChange}
       />
-      <Button
-        type="submit"
-        disabled={ !isFormValid() }
-      >
-        { submitMessage }
+      <Button type='submit' disabled={!isFormValid()}>
+        {submitMessage}
       </Button>
-      <Button
-        type="reset"
-        disabled={ isFormEmpty() }
-        onClick={ handleReset }
-      >
-        { cancelMessage }
+      <Button type='reset' disabled={isFormEmpty()} onClick={handleReset}>
+        {cancelMessage}
       </Button>
-    </form >
+    </form>
   );
 }

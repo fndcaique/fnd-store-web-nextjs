@@ -5,7 +5,7 @@ import { User } from '../../types/user.type';
 const initialState: User = {
   login: '',
   password: '',
-  isAuthenticated: false,
+  isAuthenticated: false
 };
 
 export const userSlice = createSlice({
@@ -17,7 +17,7 @@ export const userSlice = createSlice({
       const newState = {
         login,
         password,
-        isAuthenticated: true,
+        isAuthenticated: true
       };
       UserService.saveOnLocalStorage(newState);
       return newState;
@@ -25,12 +25,12 @@ export const userSlice = createSlice({
     handleLogout() {
       UserService.removeFromLocalStorage();
       return initialState;
-    },
-  },
+    }
+  }
 });
 
 // Action creators are generated for each case reducer function
 export const { handleLogin, handleLogout } = userSlice.actions;
 
 const UserReducer = userSlice.reducer;
-export default UserReducer ;
+export default UserReducer;

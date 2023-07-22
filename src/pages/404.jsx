@@ -4,9 +4,7 @@ export default function NotFound() {
   return (
     <>
       <h1>404 - Page not found</h1>
-      <Link href="/">
-        Go home
-      </Link>
+      <Link href='/'>Go home</Link>
     </>
   );
 }

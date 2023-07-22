@@ -4,9 +4,9 @@ import UserReducer from './reducers/user';
 
 export const store = configureStore({
   reducer: {
-    user: UserReducer,
+    user: UserReducer
   },
-  devTools: true,
+  devTools: true
 });
 
 export interface RootState {

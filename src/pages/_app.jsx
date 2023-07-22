@@ -8,10 +8,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Provider store={ store }>
+      <Provider store={store}>
         <RouterGuard>
           <Header />
-          <Component { ...pageProps } />
+          <Component {...pageProps} />
         </RouterGuard>
       </Provider>
     </>

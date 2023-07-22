@@ -9,11 +9,10 @@ const PRODUCT_INITIAL_VALUE = {
   name: '',
   sellPrice: '',
   buyPrice: '',
-  quantity: '',
+  quantity: ''
 };
 
 export default function BuyProducts() {
-
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(PRODUCT_INITIAL_VALUE);
   const [isEditing, setIsEditing] = useState(false);
@@ -29,10 +28,10 @@ export default function BuyProducts() {
     localStorage.setItem('products', JSON.stringify(data));
   };
 
-  const handleInputChange = ({ target: { name, value }}) => {
+  const handleInputChange = ({ target: { name, value } }) => {
     setProduct({
       ...product,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -42,7 +41,7 @@ export default function BuyProducts() {
   };
 
   const isFormEmpty = () => {
-    return Object.values(product).every(value => value.length === 0);
+    return Object.values(product).every((value) => value.length === 0);
   };
 
   const resetForm = () => {
@@ -56,7 +55,11 @@ export default function BuyProducts() {
 
   const handleSubmitProduct = () => {
     if (isEditing) {
-      setProducts([...products.slice(0, idToEdit), product, ...products.slice(idToEdit + 1)]);
+      setProducts([
+        ...products.slice(0, idToEdit),
+        product,
+        ...products.slice(idToEdit + 1)
+      ]);
       setIsEditing(false);
     } else {
       setProducts([...products, product]);
@@ -80,27 +83,29 @@ export default function BuyProducts() {
   };
 
   return (
-    <div className="buy-page">
+    <div className='buy-page'>
       <h1>Comprar Produtos</h1>
       <section>
         <ProductForm
-          product={ product }
-          handleInputChange={ handleInputChange }
-          submitMessage={ isEditing ? 'Editar' : 'Adicionar' }
-          isFormValid={ isFormValid }
-          isFormEmpty={ isFormEmpty }
-          handleSubmit={ handleSubmitProduct }
-          handleReset={ resetForm }
+          product={product}
+          handleInputChange={handleInputChange}
+          submitMessage={isEditing ? 'Editar' : 'Adicionar'}
+          isFormValid={isFormValid}
+          isFormEmpty={isFormEmpty}
+          handleSubmit={handleSubmitProduct}
+          handleReset={resetForm}
         />
       </section>
       <section>
         <ProductsTable
-          products={ products }
-          handleDeleteProduct={ handleDeleteProduct }
-          handleEditProduct={ handleEditProduct }
+          products={products}
+          handleDeleteProduct={handleDeleteProduct}
+          handleEditProduct={handleEditProduct}
         />
       </section>
-      <Button type="button" onClick={ handleFinalizeBuy } >Finalizar Compra</Button>
+      <Button type='button' onClick={handleFinalizeBuy}>
+        Finalizar Compra
+      </Button>
     </div>
   );
 }

@@ -13,29 +13,33 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(handleLogin({
-      login,
-      password,
-    }));
+    dispatch(
+      handleLogin({
+        login,
+        password
+      })
+    );
     router.push(router.asPath || '/');
   };
 
   return (
-    <div className="login-page">
-      <form onSubmit={ handleSubmit }>
+    <div className='login-page'>
+      <form onSubmit={handleSubmit}>
         <Input
-          id="login-input"
-          label="Login"
-          value={ login }
-          placeholder="seu email ou nome de usuário"
-          handleChange={ setLogin } />
+          id='login-input'
+          label='Login'
+          value={login}
+          placeholder='seu email ou nome de usuário'
+          handleChange={setLogin}
+        />
         <Input
-          id="password-input"
-          label="Senha"
-          type="password"
-          placeholder="your password ****"
-          handleChange={ setPassword } />
-        <Button type="submit">Entrar</Button>
+          id='password-input'
+          label='Senha'
+          type='password'
+          placeholder='your password ****'
+          handleChange={setPassword}
+        />
+        <Button type='submit'>Entrar</Button>
       </form>
     </div>
   );

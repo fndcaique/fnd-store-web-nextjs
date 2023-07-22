@@ -6,11 +6,9 @@ export default function Products() {
   return (
     <div>
       <h1>Produtos</h1>
-      <Link href="/products/buy">
-        Comprar
-      </Link>
+      <Link href='/products/buy'>Comprar</Link>
 
-      <ProductsList products={ getProducts() } />
+      <ProductsList products={getProducts()} />
     </div>
   );
 }
