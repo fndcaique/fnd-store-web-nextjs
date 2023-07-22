@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../store';
 import { handleLogout } from '../../store/reducers/user';
-import colors from '../../styles/colors';
-import Container from './container';
+import { Colors } from '../../styles/colors';
+import { Container } from './container';
 
-const { primary, light } = colors;
+const { primary, light } = Colors;
 
 const HeaderStyled = styled.header`
   background-color: ${primary};
@@ -36,9 +36,9 @@ export default function Header() {
   return (
     <HeaderStyled>
       <Container>
-        <div className="app-title">
+        <h1 className="app-title">
           <Link href="/">FND Store</Link>
-        </div>
+        </h1>
         <div>{ isAuthenticated ? <Link href="/login" onClick={ () => dispatch(handleLogout()) }>Sair</Link> : <Link href="/login">Entrar</Link> }</div>
       </Container>
     </HeaderStyled>
