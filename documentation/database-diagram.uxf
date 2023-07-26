@@ -1,0 +1,120 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>448</x><y>104</y><w>152</w><h>152</h></coordinates><panel_attributes>vehicle
+--
+id: string; PK;
+active: boolean;
+brand: string;
+color: string;
+model: string;
+manufacture_year: number;
+chassis: string;
+plate: string;
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>704</x><y>136</y><w>128</w><h>40</h></coordinates><panel_attributes>client
+--
+id: string; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>200</x><y>232</y><w>104</w><h>88</h></coordinates><panel_attributes>phone
+--
+id: string; PK;
+person_id: string; FK;
+value: string;
+is_whatsApp: boolean;
+obs: string | null;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>232</x><y>160</y><w>40</w><h>88</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>592</x><y>152</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>140;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>448</x><y>376</y><w>144</w><h>144</h></coordinates><panel_attributes>budget
+--
+id: string; PK;
+description: string;
+price: number;
+entry_date: Date;
+exit_date: Date;
+approved_on: Date | null;
+refused_on: Date | null;
+finished_on: Date | null;
+payment_id: string | null; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>504</x><y>248</y><w>40</w><h>144</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>UMLClass</id><coordinates><x>696</x><y>328</y><w>168</w><h>96</h></coordinates><panel_attributes>budget_product
+--
+budget_id: string; PK; FK;
+product_id: string; PK; FK;
+price: number;
+quantity: number;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>696</x><y>448</y><w>168</w><h>96</h></coordinates><panel_attributes>budget_labor
+--
+budget_id: string; PK; FK;
+labor_id: string; PK; FK;
+price: number;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>584</x><y>456</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>584</x><y>384</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>312</y><w>168</w><h>96</h></coordinates><panel_attributes>product
+--
+id: string;
+name: string;
+price: number;
+quantity: number;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>456</y><w>168</w><h>96</h></coordinates><panel_attributes>labor
+--
+id: string;
+name: string;
+price: number;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>336</y><w>96</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>488</y><w>96</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>360</y><w>128</w><h>40</h></coordinates><panel_attributes>employee
+--
+id: string; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>352</x><y>384</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1..n
+m2=1</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>360</y><w>144</w><h>112</h></coordinates><panel_attributes>budget_employee
+--
+budget_id: string; PK; FK;
+employee_id: boolean; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>376</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>56</y><w>128</w><h>112</h></coordinates><panel_attributes>person
+--
+id: string;
+active: boolean;
+name: string;
+address: string;
+birthdate: Date | null;
+cpf: string | null;
+cnpj: string | null;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>0</y><w>448</w><h>152</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;70;10;10;520;10;520;170</additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>136</y><w>192</w><h>240</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>220;10;10;10;10;280</additional_attributes></element><element><id>UMLClass</id><coordinates><x>944</x><y>608</y><w>128</w><h>64</h></coordinates><panel_attributes>payment_method
+--
+id: string; PK;
+description: string; UK;
+fee_percentage: number;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>704</x><y>768</y><w>152</w><h>120</h></coordinates><panel_attributes>installment
+--
+payment_id: string; PK; FK;
+payment_method_id: string; PK; FK;
+number: number;
+value: number;
+paid_value: number;
+paid_on: Date | null;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>600</y><w>160</w><h>88</h></coordinates><panel_attributes>payment
+--
+id: string; PK;
+total: number;
+discount: number | null;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>496</x><y>512</y><w>40</w><h>104</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=1</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>680</y><w>40</w><h>104</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>848</x><y>624</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>704</x><y>600</y><w>152</w><h>88</h></coordinates><panel_attributes>payment_payment_method
+--
+payment_id: string; PK; FK;
+payment_way_id: string; PK; FK;
+fee_value: number;
+payment_value: number;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>592</x><y>624</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element></diagram>
