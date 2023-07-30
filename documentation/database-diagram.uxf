@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>448</x><y>104</y><w>152</w><h>152</h></coordinates><panel_attributes>vehicle
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>592</x><y>192</y><w>152</w><h>152</h></coordinates><panel_attributes>vehicle
 --
 id: string; PK;
 active: boolean;
@@ -8,23 +8,27 @@ model: string;
 manufacture_year: number;
 chassis: string;
 plate: string;
+created_on: Date;
+updated_on: Date;
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>704</x><y>136</y><w>128</w><h>40</h></coordinates><panel_attributes>client
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>848</x><y>224</y><w>128</w><h>64</h></coordinates><panel_attributes>client
 --
-id: string; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>200</x><y>232</y><w>104</w><h>88</h></coordinates><panel_attributes>phone
+id: string; PK; FK;
+created_on: Date;
+updated_on: Date;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>248</x><y>320</y><w>104</w><h>88</h></coordinates><panel_attributes>phone
 --
 id: string; PK;
 person_id: string; FK;
 value: string;
 is_whatsApp: boolean;
-obs: string | null;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>232</x><y>160</y><w>40</w><h>88</h></coordinates><panel_attributes>lt=-
+obs: string | null;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>248</y><w>120</w><h>88</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>592</x><y>152</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+m2=0..n</panel_attributes><additional_attributes>130;10;110;40;10;50;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>240</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>140;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>448</x><y>376</y><w>144</w><h>144</h></coordinates><panel_attributes>budget
+m2=0..n</panel_attributes><additional_attributes>140;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>592</x><y>432</y><w>144</w><h>192</h></coordinates><panel_attributes>budget
 --
-id: string; PK;
+id: uuid; PK;
 description: string;
 price: number;
 entry_date: Date;
@@ -32,89 +36,226 @@ exit_date: Date;
 approved_on: Date | null;
 refused_on: Date | null;
 finished_on: Date | null;
-payment_id: string | null; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>504</x><y>248</y><w>40</w><h>144</h></coordinates><panel_attributes>lt=-
+payment_id: string | null; FK;
+created_on: Date;
+updated_on: Date;
+created_by: uuid; FK;
+updated_by: uuid; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>648</x><y>336</y><w>40</w><h>112</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=1..n</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>UMLClass</id><coordinates><x>696</x><y>328</y><w>168</w><h>96</h></coordinates><panel_attributes>budget_product
+m2=1..n</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>840</x><y>416</y><w>168</w><h>96</h></coordinates><panel_attributes>budget_product
 --
 budget_id: string; PK; FK;
 product_id: string; PK; FK;
 price: number;
 quantity: number;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>696</x><y>448</y><w>168</w><h>96</h></coordinates><panel_attributes>budget_labor
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>840</x><y>536</y><w>168</w><h>96</h></coordinates><panel_attributes>budget_labor
 --
 budget_id: string; PK; FK;
 labor_id: string; PK; FK;
 price: number;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>584</x><y>456</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>544</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=1..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>584</x><y>384</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+m2=0..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>472</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>312</y><w>168</w><h>96</h></coordinates><panel_attributes>product
+m2=0..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1080</x><y>384</y><w>168</w><h>152</h></coordinates><panel_attributes>product
 --
-id: string;
+id: string; PK;
+name: string;
+sell_price: number;
+min_quantity: number;
+manufacturer_name: string | null;
+description: string | null;
+experation_date: Date | null;
+measurement_unit: string;
+created_on: Date;
+updated_on: Date;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1080</x><y>544</y><w>168</w><h>96</h></coordinates><panel_attributes>labor
+--
+id: string; PK;
 name: string;
 price: number;
-quantity: number;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>456</y><w>168</w><h>96</h></coordinates><panel_attributes>labor
---
-id: string;
-name: string;
-price: number;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>336</y><w>96</w><h>32</h></coordinates><panel_attributes>lt=-
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1000</x><y>424</y><w>96</w><h>32</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>488</y><w>96</w><h>32</h></coordinates><panel_attributes>lt=-
+m2=0..n</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1000</x><y>576</y><w>96</w><h>32</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>360</y><w>128</w><h>40</h></coordinates><panel_attributes>employee
+m2=0..n</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>144</x><y>448</y><w>128</w><h>72</h></coordinates><panel_attributes>employee
 --
-id: string; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>352</x><y>384</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
-m1=1..n
-m2=1</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>360</y><w>144</w><h>112</h></coordinates><panel_attributes>budget_employee
+id: string; PK; FK;
+created_on: Date;
+updated_on: Date;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>496</x><y>472</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=1</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>448</y><w>144</w><h>112</h></coordinates><panel_attributes>budget_employee
 --
 budget_id: string; PK; FK;
-employee_id: boolean; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>376</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
+employee_id: boolean; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>264</x><y>464</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>56</y><w>128</w><h>112</h></coordinates><panel_attributes>person
+m2=0..n</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>120</y><w>128</w><h>136</h></coordinates><panel_attributes>person
 --
-id: string;
+id: string; PK;
 active: boolean;
 name: string;
 address: string;
 birthdate: Date | null;
 cpf: string | null;
 cnpj: string | null;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>0</y><w>448</w><h>152</h></coordinates><panel_attributes>lt=-
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>456</x><y>88</y><w>448</w><h>152</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>10;70;10;10;520;10;520;170</additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>136</y><w>192</w><h>240</h></coordinates><panel_attributes>lt=-
+m2=0..n</panel_attributes><additional_attributes>10;40;10;10;520;10;520;170</additional_attributes></element><element><id>Relation</id><coordinates><x>184</x><y>224</y><w>192</w><h>240</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=0..n</panel_attributes><additional_attributes>220;10;10;10;10;280</additional_attributes></element><element><id>UMLClass</id><coordinates><x>944</x><y>608</y><w>128</w><h>64</h></coordinates><panel_attributes>payment_method
+m2=0..n</panel_attributes><additional_attributes>220;10;10;10;10;280</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1088</x><y>696</y><w>128</w><h>96</h></coordinates><panel_attributes>receipt_method
 --
 id: string; PK;
 description: string; UK;
 fee_percentage: number;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>704</x><y>768</y><w>152</w><h>120</h></coordinates><panel_attributes>installment
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>848</x><y>856</y><w>152</w><h>120</h></coordinates><panel_attributes>receipt_installment
+--
+receipt_id: string; PK; FK;
+receipt_method_id: string; PK; FK;
+number: number;
+value: number;
+received_value: number;
+received_on: Date | null;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>584</x><y>688</y><w>160</w><h>104</h></coordinates><panel_attributes>receipt
+--
+id: string; PK;
+total: number;
+discount: number | null;
+quantity_installment: number;
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>616</y><w>40</w><h>88</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=1</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>912</x><y>768</y><w>40</w><h>104</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>992</x><y>712</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>848</x><y>688</y><w>152</w><h>88</h></coordinates><panel_attributes>receipt_receipt_method
+--
+receipt_id: string; PK; FK;
+receipt_method_id: string; PK; FK;
+fee_value: number;
+receipt_value: number;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>712</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1080</x><y>200</y><w>168</w><h>128</h></coordinates><panel_attributes>product_stock
+--
+id: string; PK;
+product_id: FK;
+buy_price: number;
+buy_quantity: number;
+current_quantity: number;
+created_on: Date;
+updated_on: Date;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1144</x><y>320</y><w>40</w><h>80</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1512</x><y>288</y><w>128</w><h>120</h></coordinates><panel_attributes>buy
+--
+id: string; PK;
+provider_id: string; FK;
+price: number;
+payment_id: string; FK;
+created_on: Date;
+updated_on: Date;
+created_by: string; FK;
+updated_by: string; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1408</x><y>192</y><w>128</w><h>40</h></coordinates><panel_attributes>provider
+--
+id: string; PK; FK;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>384</x><y>56</y><w>1120</w><h>152</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;80;10;10;1360;20;1360;170</additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>320</y><w>104</w><h>80</h></coordinates><panel_attributes>email
+--
+id: string; PK;
+person_id: string; FK;
+value: string;
+obs: string | null;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>464</x><y>248</y><w>40</w><h>88</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1528</x><y>208</y><w>88</w><h>96</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;10;70;10;70;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1288</x><y>376</y><w>168</w><h>96</h></coordinates><panel_attributes>buy_product
+--
+budget_id: string; PK; FK;
+product_id: string; PK; FK;
+price: number;
+quantity: number;
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1240</x><y>464</y><w>120</w><h>64</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;50;110;50;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1448</x><y>400</y><w>112</w><h>72</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>110;10;110;60;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1736</x><y>312</y><w>160</w><h>104</h></coordinates><panel_attributes>payment
+--
+id: string; PK;
+total: number;
+discount: number | null;
+quantity_installment: number;
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1744</x><y>504</y><w>168</w><h>104</h></coordinates><panel_attributes>payment_payment_method
+--
+payment_id: string; PK; FK;
+payment_method_id: string; PK; FK;
+fee_value: number;
+payment_value: number;
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1752</x><y>672</y><w>128</w><h>96</h></coordinates><panel_attributes>payment_method
+--
+id: string; PK;
+description: string; UK;
+fee_percentage: number;
+created_on: Date;
+updated_on: Date;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1496</x><y>528</y><w>168</w><h>128</h></coordinates><panel_attributes>payment_installment
 --
 payment_id: string; PK; FK;
 payment_method_id: string; PK; FK;
 number: number;
 value: number;
 paid_value: number;
-paid_on: Date | null;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>600</y><w>160</w><h>88</h></coordinates><panel_attributes>payment
+paid_on: Date | null;
+created_on: Date;
+updated_on: Date;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1800</x><y>408</y><w>40</w><h>112</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>1632</x><y>320</y><w>120</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=1</panel_attributes><additional_attributes>130;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1792</x><y>600</y><w>40</w><h>88</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1656</x><y>552</y><w>104</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..n</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>136</x><y>96</y><w>128</w><h>104</h></coordinates><panel_attributes>user
+--
+id: string; PK; FK;
+username: string; UK;
+password: string;
+active: boolean;
+created_on: Date;
+updated_on: Date;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>256</x><y>152</y><w>120</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=1</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>352</y><w>128</w><h>72</h></coordinates><panel_attributes>rule
 --
 id: string; PK;
-total: number;
-discount: number | null;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>496</x><y>512</y><w>40</w><h>104</h></coordinates><panel_attributes>lt=-
-m1=0..1
-m2=1</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>680</y><w>40</w><h>104</h></coordinates><panel_attributes>lt=-
-m1=1
-m2=1..n</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>848</x><y>624</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=-
-m1=1
-m2=0..n</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>704</x><y>600</y><w>152</w><h>88</h></coordinates><panel_attributes>payment_payment_method
+name: string; UK;
+description: string | null;
+created_on: Date;
+updated_on: Date;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>216</y><w>120</w><h>64</h></coordinates><panel_attributes>user_rule
 --
-payment_id: string; PK; FK;
-payment_way_id: string; PK; FK;
-fee_value: number;
-payment_value: number;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>592</x><y>624</y><w>128</w><h>32</h></coordinates><panel_attributes>lt=-
+user_id: string; PK; FK;
+rule_id: string; PK; FK;
+created_on: Date;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>56</x><y>136</y><w>96</w><h>96</h></coordinates><panel_attributes>lt=-
+m1=1..n
+m2=1</panel_attributes><additional_attributes>10;100;10;10;100;10</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>272</y><w>40</w><h>96</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=1</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>96</y><w>608</w><h>520</h></coordinates><panel_attributes>lt=-
 m1=1
-m2=1..n</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element></diagram>
+m2=0..n</panel_attributes><additional_attributes>170;10;10;10;10;620;740;620</additional_attributes></element><element><id>Relation</id><coordinates><x>232</x><y>24</y><w>1424</w><h>280</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>10;90;10;10;1740;20;1740;330</additional_attributes></element></diagram>
