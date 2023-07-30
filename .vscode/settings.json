@@ -14,5 +14,8 @@
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  },
+  "files.associations": {
+    "*.scss": "tailwindcss"
   }
 }

@@ -1,13 +1,12 @@
 import { Provider } from 'react-redux';
 import RouterGuard from '../components/RouterGuard';
 import { store } from '../store';
-import GlobalStyle from '../styles/global-style';
+import '../styles/globals.scss';
 import Header from './../components/layout/header';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <GlobalStyle />
       <Provider store={store}>
         <RouterGuard>
           <Header />

@@ -23,8 +23,11 @@ export default function Login() {
   };
 
   return (
-    <div className='login-page'>
-      <form onSubmit={handleSubmit}>
+    <div className='login-page h-screen flex justify-center items-center'>
+      <form
+        onSubmit={handleSubmit}
+        className='border-neutral border-2 rounded p-4 flex flex-col gap-4 items-start'
+      >
         <Input
           id='login-input'
           label='Login'
@@ -39,7 +42,9 @@ export default function Login() {
           placeholder='your password ****'
           handleChange={setPassword}
         />
-        <Button type='submit'>Entrar</Button>
+        <Button primary outline type='submit'>
+          Entrar
+        </Button>
       </form>
     </div>
   );

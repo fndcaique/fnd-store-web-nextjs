@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dark: #111111;
+  --light: #f3f3f3;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--dark);
+  color: var(--light);
+  min-height: 100dvh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: inline-block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize 'line-height'. Cannot be changed from 'normal' in Firefox 4+.  */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable 'input' types in iOS */
+  appearance: none;
+}
+
+li {
+  list-style: none;
+}
+
+
+.border-radius {
+  border-radius: var(--border-radius);
+}
+
+ /* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 600px) {} */
+
+ /* Small devices (portrait tablets and large phones, 600px and up) */
+ /* @media only screen and (min-width: 600px) {} */
+
+ /* Medium devices (landscape tablets, 768px and up) */
+ /* @media only screen and (min-width: 768px) {} */
+
+ /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 0) and (max-width: 991px) {
+  .desktop {
+    display: none!important;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .mobile {
+    display: none!important;
+  }
+}
+ /* Extra large devices (large laptops and desktops, 1200px and up)  */
+ /* @media only screen and (min-width: 1200px) {} */

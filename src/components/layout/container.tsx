@@ -1,10 +1,4 @@
-import styled from 'styled-components';
-
-const ContainerStyled = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 14px;
-`;
+import classNames from 'classnames';
 
 interface Props {
   className?: string;
@@ -12,5 +6,11 @@ interface Props {
 }
 
 export function Container({ className = 'container', children }: Props) {
-  return <ContainerStyled className={className}>{children}</ContainerStyled>;
+  return (
+    <div
+      className={classNames('max-w-screen-xl p-3.5 my-0 mx-auto', className)}
+    >
+      {children}
+    </div>
+  );
 }
