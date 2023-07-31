@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../store';
 import { handleLogout } from '../../store/reducers/user';
-import { Container } from './container';
+import Container from './container';
 
 export default function Header() {
   const isAuthenticated = useSelector<RootState, boolean>(
@@ -13,7 +13,7 @@ export default function Header() {
   const dispatch = useDispatch();
 
   return (
-    <header className='h-{100} bg-primary text-dark p-3'>
+    <header className='h-[100px] bg-primary text-dark'>
       <Container className='h-full flex items-center justify-between'>
         <h1 className='text-4xl'>
           <Link href='/'>FND Store</Link>

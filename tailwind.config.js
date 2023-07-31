@@ -12,7 +12,11 @@ module.exports = {
       current: 'currentColor',
       ...Colors
     },
-    extend: {}
+    extend: {
+      boxShadow: {
+        app: `0 0 4px 2px ${Colors['neutral-3']}`
+      }
+    }
   },
   plugins: []
 };

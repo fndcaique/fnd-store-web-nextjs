@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import Router from 'next/router';
 import UserService from '../../services/user.service';
 import { User } from '../../types/user.type';
 
 const initialState: User = {
-  login: '',
+  username: '',
   password: '',
   isAuthenticated: false
 };
@@ -13,13 +14,15 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     handleLogin(state, action) {
-      const { login, password } = action.payload;
+      const { username, password } = action.payload;
       const newState = {
-        login,
+        ...state,
+        username,
         password,
         isAuthenticated: true
       };
       UserService.saveOnLocalStorage(newState);
+      Router.router?.push('/');
       return newState;
     },
     handleLogout() {

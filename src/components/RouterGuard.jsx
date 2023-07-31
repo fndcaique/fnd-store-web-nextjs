@@ -10,7 +10,7 @@ export default function RouterGuard({ children }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const publicPaths = ['/login', '/404'];
+    const publicPaths = ['/login', '/404', '/components'];
     if (!isAuthenticated && !publicPaths.includes(router.pathname)) {
       const localStorageUser = UserService.getFromLocalStorage();
       if (localStorageUser) {

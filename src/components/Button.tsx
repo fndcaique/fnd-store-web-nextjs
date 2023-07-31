@@ -12,7 +12,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   lg?: boolean;
 };
 
-const Button = (props: ButtonProps) => {
+export default function Button(props: ButtonProps) {
   const { children, primary, accent, danger, sm, lg, outline, ...restProps } =
     props;
 
@@ -40,19 +40,16 @@ const Button = (props: ButtonProps) => {
       bgClass = 'bg-danger';
     } else {
       bgClass = 'bg-neutral';
-      textClass = 'text-dark';
     }
   }
 
   if (sm) {
-    sizeClass = 'px-2 py-1 rounded';
+    sizeClass = 'h-[30px] px-2 py-1 rounded';
   } else if (lg) {
-    sizeClass = 'px-8 py-2 rounded';
+    sizeClass = 'h-[48px] px-8 py-2 rounded';
   } else {
-    sizeClass = 'px-4 py-2 rounded';
+    sizeClass = 'h-[40px] px-4 py-2 rounded';
   }
-
-  console.log(bgClass, textClass, sizeClass);
 
   return (
     <button
@@ -62,6 +59,4 @@ const Button = (props: ButtonProps) => {
       {children}
     </button>
   );
-};
-
-export default Button;
+}
