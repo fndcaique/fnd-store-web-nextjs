@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ProductsList from '../../components/ProductsList';
+import ProductsList from '../../components/product/ProductsList';
 import { getProducts } from '../../services/products';
 
 export default function Products() {

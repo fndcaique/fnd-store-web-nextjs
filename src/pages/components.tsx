@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Button from '../components/button';
+import Button from '../components/form/button';
 import FormikField from '../components/form/formik-field';
 import Input from '../components/form/input';
+import InputMask from '../components/form/input-mask';
 import Container from '../components/layout/container';
 import Page from '../components/layout/page';
+import { cpfMask, removeMask } from '../utils/mask';
 
 export default function ComponentsPage() {
   const formik = useFormik({
@@ -119,21 +121,11 @@ export default function ComponentsPage() {
         </section>
         <section className='flex flex-col gap-4'>
           <h1 className='text-2xl'>Input</h1>
-          <p>Default</p>
           <Input />
-
-          {/* <p>With CPF mask</p>
-          <Input
-            mask={(value) => {
-              console.log(value);
-
-              return value?.length >= 2
-                ? value.slice(0, value.length / 2) +
-                    '-' +
-                    value.slice(value.length / 2)
-                : value;
-            }}
-          /> */}
+        </section>
+        <section className='flex flex-col gap-4'>
+          <h1 className='text-2xl'>InputMask</h1>
+          <InputMask mask={cpfMask} removeMask={removeMask} />
         </section>
         <section className='flex flex-col gap-4'>
           <h1 className='text-2xl'>FormikField</h1>

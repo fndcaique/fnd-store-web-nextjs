@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-import Button from '../components/button';
+import Button from '../components/form/button';
 import FormMessages from '../components/form/form-messages';
 import FormikField from '../components/form/formik-field';
 import Page from '../components/layout/page';

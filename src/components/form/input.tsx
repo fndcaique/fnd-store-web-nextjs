@@ -2,8 +2,6 @@ import classNames from 'classnames';
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: boolean;
-  mask?: (value: string) => string;
-  removeMask?: (value: string) => string;
 };
 
 export default function Input(props: InputProps) {

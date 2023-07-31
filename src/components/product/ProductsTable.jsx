@@ -1,6 +1,6 @@
-import Button from './Button';
+import Button from '../form/button';
 
-export function ProductsTable({
+export default function ProductsTable({
   products,
   handleDeleteProduct,
   handleEditProduct

@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   primary?: boolean;
@@ -44,16 +44,16 @@ export default function Button(props: ButtonProps) {
   }
 
   if (sm) {
-    sizeClass = 'h-[30px] px-2 py-1 rounded';
+    sizeClass = 'min-h-[30px] px-2 py-1 rounded';
   } else if (lg) {
-    sizeClass = 'h-[48px] px-8 py-2 rounded';
+    sizeClass = 'min-h-[48px] px-8 py-2 rounded';
   } else {
-    sizeClass = 'h-[40px] px-4 py-2 rounded';
+    sizeClass = 'min-h-[40px] px-4 py-2 rounded';
   }
 
   return (
     <button
-      className={classnames(bgClass, textClass, sizeClass)}
+      className={classNames(bgClass, textClass, sizeClass)}
       {...restProps}
     >
       {children}

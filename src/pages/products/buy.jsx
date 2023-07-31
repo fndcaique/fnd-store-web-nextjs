@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Button from '../../components/Button';
-import ProductForm from '../../components/ProductForm';
-import { ProductsTable } from '../../components/ProductsTable';
+import Button from '../../components/form/button';
+import ProductForm from '../../components/product/ProductForm';
+import ProductsTable from '../../components/product/ProductsTable';
 import { getProducts } from '../../services/products';
 
 const PRODUCT_INITIAL_VALUE = {

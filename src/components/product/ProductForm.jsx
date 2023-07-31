@@ -1,5 +1,5 @@
-import Button from './Button';
-import Input from './Input';
+import Button from '../form/button';
+import Input from '../form/input';
 
 export default function ProductForm({
   product: { name, price, quantity },
