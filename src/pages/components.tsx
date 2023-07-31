@@ -4,6 +4,7 @@ import Button from '../components/form/button';
 import FormikField from '../components/form/formik-field';
 import Input from '../components/form/input';
 import InputMask from '../components/form/input-mask';
+import Textarea from '../components/form/teaxtarea';
 import Container from '../components/layout/container';
 import Page from '../components/layout/page';
 import { cpfMask, removeMask } from '../utils/mask';
@@ -12,7 +13,8 @@ export default function ComponentsPage() {
   const formik = useFormik({
     initialValues: { name: '' },
     validationSchema: Yup.object().shape({
-      name: Yup.string().required()
+      name: Yup.string().required(),
+      address: Yup.string().min(4).required()
     }),
     onSubmit: (values) => {
       alert(values);
@@ -20,7 +22,7 @@ export default function ComponentsPage() {
   });
   return (
     <Page className='flex flex-col'>
-      <Container className='flex flex-col gap-6 divide-y-2'>
+      <Container className='flex flex-col gap-6 divide-y-2 pb-16'>
         <section className='flex flex-col gap-4'>
           <h1 className='text-2xl'>Button</h1>
           <h2 className='text-xl'>neutral - primary - accent - danger</h2>
@@ -128,8 +130,18 @@ export default function ComponentsPage() {
           <InputMask mask={cpfMask} removeMask={removeMask} />
         </section>
         <section className='flex flex-col gap-4'>
+          <h1 className='text-2xl'>Textarea</h1>
+          <Textarea />
+        </section>
+        <section className='flex flex-col gap-4'>
           <h1 className='text-2xl'>FormikField</h1>
           <FormikField name='name' label='Name' formik={formik} />
+          <FormikField
+            name='address'
+            label='Address'
+            component={Textarea}
+            formik={formik}
+          />
         </section>
       </Container>
     </Page>
