@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '../components/form/button';
+import FormMessages from '../components/form/form-messages';
 import FormikField from '../components/form/formik-field';
 import Input from '../components/form/input';
 import InputMask from '../components/form/input-mask';
@@ -11,10 +12,16 @@ import { cpfMask, removeMask } from '../utils/mask';
 
 export default function ComponentsPage() {
   const formik = useFormik({
-    initialValues: { name: '' },
+    initialValues: { email: '', name: '', address: '' },
     validationSchema: Yup.object().shape({
-      name: Yup.string().required(),
-      address: Yup.string().min(4).required()
+      email: Yup.string()
+        .email(FormMessages.email)
+        .required(FormMessages.required),
+      name: Yup.string().required(FormMessages.required),
+      address: Yup.string()
+        .min(4, FormMessages.minLength(4))
+        .max(32, FormMessages.maxLength(32))
+        .required(FormMessages.required)
     }),
     onSubmit: (values) => {
       alert(values);
@@ -135,12 +142,20 @@ export default function ComponentsPage() {
         </section>
         <section className='flex flex-col gap-4'>
           <h1 className='text-2xl'>FormikField</h1>
+          <FormikField
+            name='email'
+            label='Email'
+            helperText='Informe o seu melhor email'
+            formik={formik}
+          />
           <FormikField name='name' label='Name' formik={formik} />
           <FormikField
             name='address'
             label='Address'
             component={Textarea}
             formik={formik}
+            counter
+            maxLength={32}
           />
         </section>
       </Container>

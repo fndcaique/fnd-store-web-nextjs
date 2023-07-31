@@ -4,9 +4,11 @@ import Input from './input';
 
 export type FormikFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
+  name: string;
   helperText?: string;
-  component?: string | ComponentType<object> | undefined;
+  component?: string | ComponentType<object>;
   formik: FormikValues;
+  counter?: boolean;
 };
 
 export default function FormikField(props: FormikFieldProps) {
@@ -15,6 +17,8 @@ export default function FormikField(props: FormikFieldProps) {
     helperText,
     component: InputComponent = Input,
     formik,
+    counter = false,
+    maxLength,
     ...restProps
   } = props;
   const id = (props.id ?? props.name) as string;
@@ -26,7 +30,20 @@ export default function FormikField(props: FormikFieldProps) {
       {label && id && (
         <label htmlFor={id} className='text-sm'>{`${label}:`}</label>
       )}
-      <InputComponent id={id} {...inputProps} {...restProps} error={hasError} />
+      <div className='flex flex-col relative'>
+        <InputComponent
+          id={id}
+          {...inputProps}
+          {...restProps}
+          error={hasError}
+        />
+        {counter && (
+          <span className='text-neutral-3 text-xs absolute top-[calc(100%+0.25rem)] right-0'>
+            {formik.values[id].length}
+            {maxLength && `/${maxLength}`}
+          </span>
+        )}
+      </div>
       {hasError && (
         <span className='text-danger text-xs'>
           {formik.errors[id]?.toString()}
