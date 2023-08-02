@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '../components/form/button';
+import Checkbox from '../components/form/checkbox';
 import FormMessages from '../components/form/form-messages';
 import FormikField from '../components/form/formik-field';
 import Input from '../components/form/input';
 import InputMask from '../components/form/input-mask';
+import Radio from '../components/form/radio';
 import Textarea from '../components/form/teaxtarea';
 import Container from '../components/layout/container';
 import Page from '../components/layout/page';
@@ -12,7 +14,13 @@ import { cpfMask, removeMask } from '../utils/mask';
 
 export default function ComponentsPage() {
   const formik = useFormik({
-    initialValues: { email: '', name: '', address: '' },
+    initialValues: {
+      email: '',
+      name: '',
+      address: '',
+      graduated: false,
+      prefer: 'frontend'
+    },
     validationSchema: Yup.object().shape({
       email: Yup.string()
         .email(FormMessages.email)
@@ -157,6 +165,61 @@ export default function ComponentsPage() {
             counter
             maxLength={32}
           />
+          <div className='flex gap-4'>
+            <FormikField
+              marker
+              name='graudated'
+              label='Graduated'
+              component={Checkbox}
+              formik={formik}
+            />
+            <FormikField
+              marker
+              name='graudated2'
+              label='Graduated2'
+              component={Checkbox}
+              formik={formik}
+            />
+          </div>
+          <div className='flex gap-4'>
+            <FormikField
+              marker
+              name='prefer'
+              id='frontend'
+              value='frontend'
+              label='Front-end'
+              component={Radio}
+              formik={formik}
+            />
+            <FormikField
+              marker
+              name='prefer'
+              id='backend'
+              value='backend'
+              label='Back-end'
+              component={Radio}
+              formik={formik}
+            />
+          </div>
+
+          <pre>{JSON.stringify(formik.values, null, 2)}</pre>
+        </section>
+
+        <section className='flex flex-col gap-4'>
+          <h1 className='text-2xl'>Checkbox</h1>
+          <Checkbox name='checkbox' label='Checkbox' />
+        </section>
+
+        {/* <section className='flex flex-col gap-4'>
+          <h1 className='text-2xl'>Switch</h1>
+          <Switch label='Switch' />
+        </section> */}
+
+        <section className='flex flex-col gap-4'>
+          <h1 className='text-2xl'>Radio</h1>
+
+          <Radio name='radio' label='Radio 1' />
+          <Radio name='radio' defaultChecked label='Radio 2' />
         </section>
       </Container>
     </Page>

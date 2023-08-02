@@ -15,7 +15,7 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   },
-  "files.associations": {
-    "*.scss": "tailwindcss"
-  }
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
 }

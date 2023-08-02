@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import React from 'react';
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   primary?: boolean;
   accent?: boolean;
@@ -53,7 +52,12 @@ export default function Button(props: ButtonProps) {
 
   return (
     <button
-      className={classNames(bgClass, textClass, sizeClass)}
+      className={classNames(
+        bgClass,
+        textClass,
+        sizeClass,
+        'text-[1.25rem] leading-[1.25rem]'
+      )}
       {...restProps}
     >
       {children}

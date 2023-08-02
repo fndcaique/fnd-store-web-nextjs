@@ -1,0 +1,90 @@
+.input {
+  height: 3rem;
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--neutral);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  background-color: var(--neutral-1);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  // Chrome, Firefox, Opera, Safari 10.1+
+  &::placeholder {
+    color: var(--neutral-3);
+    opacity: 1; // Firefox
+  }
+
+  &:disabled {
+    border: 1px solid var(--neutral);
+    color: var(--neutral-4);
+    background-color: var(--neutral-2);
+  }
+
+  &:disabled::placeholder {
+    color: var(--neutral);
+  }
+
+  &.error {
+    border: 1px solid var(--danger-3);
+    box-shadow:
+      0px 0px 0.25rem 0.125rem var(--danger-1);
+  }
+
+  &:focus {
+    border-radius: 0.25rem;
+    border: 1px solid var(--accent-3);
+    box-shadow: 0 0 0.25rem 0.125rem var(--accent-1);
+  }
+}
+
+textarea.input {
+  height: 6rem;
+  resize: none;
+}
+
+.form-control {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+
+  &.error {
+    .input {
+      border: 1px solid var(--danger-3);
+      box-shadow:
+        0px 0px 0.25rem 0.125rem var(--danger-1);
+    }
+  }
+
+  &:focus-within {
+    .input {
+      border-radius: 0.25rem;
+      border: 1px solid var(--accent-3);
+      box-shadow: 0 0 0.25rem 0.125rem var(--accent-3);
+    }
+  }
+
+  .counter {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    color: var(--danger);
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    justify-self: flex-end;
+    margin-top: 0.25rem;
+  }
+}
+
+.label-text {
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+}

@@ -1,9 +1,11 @@
+import classNames from 'classnames';
 import { FormikValues } from 'formik';
 import { ComponentType } from 'react';
 import Input from './input';
 
 export type FormikFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
+  marker?: boolean;
   name: string;
   helperText?: string;
   component?: string | ComponentType<object>;
@@ -13,6 +15,7 @@ export type FormikFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export default function FormikField(props: FormikFieldProps) {
   const {
+    marker,
     label,
     helperText,
     component: InputComponent = Input,
@@ -26,26 +29,29 @@ export default function FormikField(props: FormikFieldProps) {
   const hasError = Boolean(formik.errors[id] && formik.touched[id]);
 
   return (
-    <div className='flex flex-col gap-1 w-full'>
+    <div className={classNames('form-control', { marker })}>
       {label && id && (
-        <label htmlFor={id} className='text-sm'>{`${label}:`}</label>
+        <label htmlFor={id} className='label-text'>
+          {label}
+        </label>
       )}
       <div className='flex flex-col relative'>
         <InputComponent
           id={id}
           {...inputProps}
           {...restProps}
+          maxLength={maxLength}
           error={hasError}
         />
         {counter && (
-          <span className='text-neutral-3 text-xs absolute top-[calc(100%+0.25rem)] right-0'>
+          <span className='text-neutral-3 text-sm absolute top-[calc(100%+0.25rem)] right-0'>
             {formik.values[id].length}
             {maxLength && `/${maxLength}`}
           </span>
         )}
       </div>
       {hasError && (
-        <span className='text-danger text-xs'>
+        <span className='text-danger text-sm'>
           {formik.errors[id]?.toString()}
         </span>
       )}
