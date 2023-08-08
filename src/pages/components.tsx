@@ -229,7 +229,7 @@ export default function ComponentsPage() {
           <Select
             onChange={(e) => console.log(e)}
             // actions
-            // multiple
+            multiple
             options={Array.from({ length: 5 }).map((_, index) => ({
               value: index,
               label: `Option ${index}`

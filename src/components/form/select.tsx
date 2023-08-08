@@ -20,16 +20,20 @@ type SelectState = {
   filter: string;
 };
 
-type ValuesArray = readonly (string | number)[];
+type SelectValue = string | number;
+
+type SelectValueArray = readonly SelectValue[];
+
+type SelectHash = {
+  [key: SelectValue]: boolean;
+};
 
 export default class Select extends React.Component<SelectProps, SelectState> {
   // const [display, setDisplay] = useState('');
 
-  value: string | number | ValuesArray | null;
+  value: SelectValue | SelectValueArray | null;
   display: string;
-  selectedOptionsHash: {
-    [key: string | number]: boolean;
-  };
+  selectedOptionsHash: SelectHash;
   ref: React.RefObject<HTMLDivElement>;
 
   constructor(props: SelectProps) {
@@ -49,7 +53,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
       this.props.options.forEach((option) => {
         if (
           (this.props.multiple &&
-            (this.value as ValuesArray).includes(option.value)) ||
+            (this.value as SelectValueArray).includes(option.value)) ||
           (!this.props.multiple && this.value === option.value)
         ) {
           selectedOptions = [...selectedOptions, option];
@@ -59,7 +63,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
       if (selectedOptions.length === 0) {
         if (!this.props.placeholder) {
           this.setState({ selectedOptions: [this.props.options[0]] });
-          this.apply();
+          this.applySelectedOptions();
         } else {
           this.display = this.props.placeholder;
         }
@@ -95,16 +99,37 @@ export default class Select extends React.Component<SelectProps, SelectState> {
           this.state.selectedOptions.map(({ value }) => value)
         ))
     ) {
-      // this.handleOptionsOrValueChanges();
-      console.log('houve alteração');
-      // this.apply();
+      this.resetSelectedOptionsToValue();
     }
-    // else {
     this.closeOptions();
-    // }
   };
 
-  apply = () => {
+  resetSelectedOptionsToValue = () => {
+    this.selectedOptionsHash = {};
+
+    const selectedOptions: SelectOption[] = this.props.options.filter(
+      (option) =>
+        this.props.multiple
+          ? (this.value as SelectValueArray)?.includes(option.value)
+          : option.value === this.value
+    );
+
+    if (this.props.multiple) {
+      const newHash = (this.value as SelectValueArray)?.reduce<SelectHash>(
+        (acc, val) => {
+          acc[val] = true;
+          return acc;
+        },
+        {}
+      );
+
+      this.selectedOptionsHash = newHash ?? {};
+    }
+
+    this.setState({ selectedOptions });
+  };
+
+  applySelectedOptions = () => {
     const { selectedOptions } = this.state;
     const { options } = this.props;
     if (this.props.multiple) {
@@ -131,11 +156,12 @@ export default class Select extends React.Component<SelectProps, SelectState> {
   };
 
   unselect = (value: string | number) => {
+    delete this.selectedOptionsHash[value];
     this.setState(
       (state) => ({
         selectedOptions: state.selectedOptions.filter((v) => v.value !== value)
       }),
-      () => !this.props.actions && this.apply()
+      () => !this.props.actions && this.applySelectedOptions()
     );
   };
 
@@ -151,11 +177,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
             : [option]
         };
       },
-      () => {
-        if (!this.props.multiple && !this.props.actions) {
-          this.apply();
-        }
-      }
+      () => !this.props.actions && this.applySelectedOptions()
     );
   };
 
@@ -163,6 +185,8 @@ export default class Select extends React.Component<SelectProps, SelectState> {
     if (this.isSelected(option.value)) {
       if (this.props.multiple) {
         this.unselect(option.value);
+      } else {
+        this.closeOptions();
       }
     } else {
       this.select(option);
@@ -260,7 +284,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
                     <li
                       key={key}
                       className={classNames(
-                        'option flex items-center justify-left text-sm py-1 px-2 rounded relative transition-all hover:bg-accent-1',
+                        'option flex items-center justify-left text-sm py-3 px-2 rounded relative transition-all hover:bg-accent-1',
                         { 'bg-primary-1': this.isSelected(option.value) }
                       )}
                       onClick={() => this.handleClickOption(option)}
@@ -276,7 +300,12 @@ export default class Select extends React.Component<SelectProps, SelectState> {
                 <Button onClick={this.cancel} clear sm className='text-md'>
                   Cancelar
                 </Button>
-                <Button onClick={this.apply} primary sm className='text-md'>
+                <Button
+                  onClick={this.applySelectedOptions}
+                  primary
+                  sm
+                  className='text-md'
+                >
                   Salvar
                 </Button>
               </div>
