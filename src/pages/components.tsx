@@ -155,6 +155,7 @@ export default function ComponentsPage() {
             name='email'
             label='Email'
             helperText='Informe o seu melhor email'
+            placeholder='email@exemplo.com'
             formik={formik}
           />
           <FormikField name='name' label='Name' formik={formik} />
@@ -224,8 +225,24 @@ export default function ComponentsPage() {
         </section>
 
         <section className='flex flex-col gap-4 mt-6'>
-          <h1 className='text-2xl'>CustomSelect</h1>
-
+          <h1 className='text-2xl'>Select</h1>
+          <Select
+            onChange={(e) => console.log(e)}
+            options={Array.from({ length: 5 }).map((_, index) => ({
+              value: index,
+              label: `Option ${index}`
+            }))}
+          ></Select>
+          <h1 className='text-2xl'>Select with placeholder</h1>
+          <Select
+            onChange={(e) => console.log(e)}
+            options={Array.from({ length: 5 }).map((_, index) => ({
+              value: index,
+              label: `Option ${index}`
+            }))}
+            placeholder='Selecione'
+          ></Select>
+          <h1 className='text-2xl'>Select multiple</h1>
           <Select
             onChange={(e) => console.log(e)}
             // actions
@@ -234,6 +251,17 @@ export default function ComponentsPage() {
               value: index,
               label: `Option ${index}`
             }))}
+          ></Select>
+          <h1 className='text-2xl'>Select multiple with placeholder</h1>
+          <Select
+            onChange={(e) => console.log(e)}
+            // actions
+            multiple
+            options={Array.from({ length: 5 }).map((_, index) => ({
+              value: index,
+              label: `Option ${index}`
+            }))}
+            placeholder='Selecione'
           ></Select>
         </section>
       </Container>

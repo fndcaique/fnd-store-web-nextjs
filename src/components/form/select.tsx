@@ -115,15 +115,19 @@ export default class Select extends React.Component<SelectProps, SelectState> {
     );
 
     if (this.props.multiple) {
-      const newHash = (this.value as SelectValueArray)?.reduce<SelectHash>(
-        (acc, val) => {
+      const value = this.value as SelectValueArray;
+      if (value && value.length) {
+        const newHash = value.reduce<SelectHash>((acc, val) => {
           acc[val] = true;
           return acc;
-        },
-        {}
-      );
-
-      this.selectedOptionsHash = newHash ?? {};
+        }, {});
+        this.selectedOptionsHash = newHash;
+      }
+    } else {
+      const value = this.value as SelectValue;
+      if (isDefined(value) && value !== '') {
+        this.selectedOptionsHash[value] = true;
+      }
     }
 
     this.setState({ selectedOptions });
@@ -233,9 +237,10 @@ export default class Select extends React.Component<SelectProps, SelectState> {
             type='button'
           >
             <p
-            // [ngClass]="{ placeholder: [null, undefined].includes(this.value) || this.value.length === 0 }"
+              // [ngClass]="{ placeholder: [null, undefined].includes(this.value) || this.value.length === 0 }"
+              className={classNames({ 'text-neutral-3': !display })}
             >
-              {display}
+              {display || this.props.placeholder}
             </p>
             {/* <app-icon
           [size]="18"
