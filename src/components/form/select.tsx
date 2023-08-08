@@ -271,7 +271,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
             )}
             <ul
               className={classNames(
-                'options bg-neutral-1 cursor-pointer w-full h-fit max-h-36 flex flex-col gap-1 overflow-y-auto p-3 rounded',
+                'options bg-neutral-1 cursor-pointer w-full h-fit max-h-36 flex flex-col gap-1 overflow-y-auto p-3',
                 { 'pb-1': actions }
               )}
               // [ngClass]="{ search: search }"

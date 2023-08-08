@@ -263,6 +263,17 @@ export default function ComponentsPage() {
             }))}
             placeholder='Selecione'
           ></Select>
+          <h1 className='text-2xl'>Select multiple with actions</h1>
+          <Select
+            onChange={(e) => console.log(e)}
+            actions
+            multiple
+            options={Array.from({ length: 5 }).map((_, index) => ({
+              value: index,
+              label: `Option ${index}`
+            }))}
+            placeholder='Selecione'
+          ></Select>
         </section>
       </Container>
     </Page>
