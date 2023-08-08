@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   primary?: boolean;
   accent?: boolean;
@@ -6,20 +7,42 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   neutral?: boolean;
   fill?: boolean;
   outline?: boolean;
+  clear?: boolean;
   sm?: boolean;
   md?: boolean;
   lg?: boolean;
 };
 
 export default function Button(props: ButtonProps) {
-  const { children, primary, accent, danger, sm, lg, outline, ...restProps } =
-    props;
+  const {
+    children,
+    primary,
+    accent,
+    danger,
+    sm,
+    lg,
+    outline,
+    clear,
+    className,
+    ...restProps
+  } = props;
 
   let bgClass = '';
   let textClass = 'text-dark';
   let sizeClass = '';
 
-  if (outline) {
+  if (clear) {
+    if (primary) {
+      textClass = 'text-primary';
+    } else if (accent) {
+      textClass = 'text-accent';
+    } else if (danger) {
+      textClass = 'text-danger';
+    } else {
+      textClass = 'text-neutral';
+    }
+    bgClass = 'bg-transparent';
+  } else if (outline) {
     bgClass = 'bg-transparent';
     if (primary) {
       textClass = 'text-primary border border-solid border-primary';
@@ -52,11 +75,14 @@ export default function Button(props: ButtonProps) {
 
   return (
     <button
-      className={classNames(
-        bgClass,
-        textClass,
-        sizeClass,
-        'text-[1.25rem] leading-[1.25rem]'
+      className={twMerge(
+        classNames(
+          bgClass,
+          textClass,
+          sizeClass,
+          'text-[1.25rem] leading-[1.25rem]',
+          className
+        )
       )}
       {...restProps}
     >

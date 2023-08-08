@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 export type TextareaProps =
   React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -12,7 +13,7 @@ export default function Textarea(props: TextareaProps) {
   };
   return (
     <textarea
-      className={classNames('input', { error }, className)}
+      className={twMerge(classNames('input', { error }, className))}
       {...inputProps}
     ></textarea>
   );

@@ -35,12 +35,14 @@
       0px 0px 0.25rem 0.125rem var(--danger-1);
   }
 
-  &:focus {
+  &:focus, &.focus {
     border-radius: 0.25rem;
     border: 1px solid var(--accent-3);
     box-shadow: 0 0 0.25rem 0.125rem var(--accent-1);
   }
 }
+
+
 
 textarea.input {
   height: 6rem;

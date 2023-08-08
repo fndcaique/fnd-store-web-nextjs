@@ -7,6 +7,7 @@ import FormikField from '../components/form/formik-field';
 import Input from '../components/form/input';
 import InputMask from '../components/form/input-mask';
 import Radio from '../components/form/radio';
+import Select from '../components/form/select';
 import Textarea from '../components/form/teaxtarea';
 import Container from '../components/layout/container';
 import Page from '../components/layout/page';
@@ -36,8 +37,8 @@ export default function ComponentsPage() {
     }
   });
   return (
-    <Page className='flex flex-col'>
-      <Container className='flex flex-col gap-6 divide-y-2 pb-16'>
+    <Page>
+      <Container className='flex flex-col-reverse gap-7 divide-y-2 pb-16'>
         <section className='flex flex-col gap-4'>
           <h1 className='text-2xl'>Button</h1>
           <h2 className='text-xl'>neutral - primary - accent - danger</h2>
@@ -103,7 +104,7 @@ export default function ComponentsPage() {
           </div>
 
           <p>lg</p>
-          <div className='flex items-baseline gap-2'>
+          <div className='flex flex-wrap items-baseline gap-2'>
             <Button lg>Click me</Button>
 
             <Button lg primary>
@@ -118,7 +119,7 @@ export default function ComponentsPage() {
               Click me
             </Button>
           </div>
-          <div className='flex items-baseline gap-2'>
+          <div className='flex flex-wrap items-baseline gap-2'>
             <Button lg outline>
               Click me
             </Button>
@@ -220,6 +221,20 @@ export default function ComponentsPage() {
 
           <Radio name='radio' label='Radio 1' />
           <Radio name='radio' defaultChecked label='Radio 2' />
+        </section>
+
+        <section className='flex flex-col gap-4 mt-6'>
+          <h1 className='text-2xl'>CustomSelect</h1>
+
+          <Select
+            onChange={(e) => console.log(e)}
+            // actions
+            // multiple
+            options={Array.from({ length: 5 }).map((_, index) => ({
+              value: index,
+              label: `Option ${index}`
+            }))}
+          ></Select>
         </section>
       </Container>
     </Page>
