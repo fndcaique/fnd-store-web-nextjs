@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 import { arrayEquals } from '../../utils/array-equals';
 import { isDefined } from '../../utils/functions';
 import { replaceSpecialCharacters } from '../../utils/replace-special-characters';
@@ -198,24 +199,37 @@ export default class Select extends React.Component<SelectProps, SelectState> {
   };
 
   render() {
-    const { actions, search, options } = this.props;
+    const {
+      // marker,
+      actions,
+      search,
+      options,
+      multiple,
+      id,
+      name,
+      placeholder,
+      className
+    } = this.props;
     const { selectedOptions, open, filter } = this.state;
     const { display } = this;
+
+    const optionsToRender = options.filter((option) =>
+      replaceSpecialCharacters(option.label.toLowerCase()).includes(
+        replaceSpecialCharacters(filter.toLowerCase())
+      )
+    );
 
     return (
       <div
         ref={this.ref}
-        className={classNames('select')}
+        className={twMerge(classNames('select'), className)}
         // [ngClass]="getSelectClasses()"
         role='combobox'
       >
         <div className='container relative'>
           <select
             className='w-0 h-0 opacity-0 absolute top-0 left-0'
-            id={this.props.id}
-            name={this.props.name}
-            // (focus)="button.focus()"
-            {...this.props}
+            {...{ id, name, multiple, placeholder }}
             value={
               selectedOptions.length > 1
                 ? selectedOptions.map(({ value }) => String(value))
@@ -240,7 +254,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
               // [ngClass]="{ placeholder: [null, undefined].includes(this.value) || this.value.length === 0 }"
               className={classNames({ 'text-neutral-3': !display })}
             >
-              {display || this.props.placeholder}
+              {display || placeholder}
             </p>
             {/* <app-icon
           [size]="18"
@@ -258,14 +272,13 @@ export default class Select extends React.Component<SelectProps, SelectState> {
             // [ngClass]="{ 'with-actions': actions }"
           >
             {search && (
-              <div className='search flex overflow-hidden py-3 px-5'>
+              <div className='search flex overflow-hidden'>
                 {/* <app-icon name="search-custom"></app-icon> */}
                 <input
-                  className='flex-1 py-0 px-5 border-none outline-none'
-                  // search
-                  type='search'
-                  // [(ngModel)]="filterDisplay"
-                  placeholder='Pesquisar'
+                  className='flex-1 py-3 px-5 border-none outline-none'
+                  type='text'
+                  onChange={(e) => this.setState({ filter: e.target.value })}
+                  placeholder='Pesquise aqui...'
                 />
               </div>
             )}
@@ -276,29 +289,26 @@ export default class Select extends React.Component<SelectProps, SelectState> {
               )}
               // [ngClass]="{ search: search }"
             >
-              {options
-                .filter((option) =>
-                  replaceSpecialCharacters(option.label.toLowerCase()).includes(
-                    replaceSpecialCharacters(filter.toLowerCase())
-                  )
-                )
-                .map((option) => {
-                  const { value, label } = option;
-                  const key = `Option-${value}`;
-                  return (
-                    <li
-                      key={key}
-                      className={classNames(
-                        'option flex items-center justify-left text-sm py-3 px-2 rounded relative transition-all hover:bg-accent-1',
-                        { 'bg-primary-1': this.isSelected(option.value) }
-                      )}
-                      onClick={() => this.handleClickOption(option)}
-                      role='option'
-                    >
-                      <span>{label}</span>
-                    </li>
-                  );
-                })}
+              {optionsToRender.map((option) => {
+                const { value, label } = option;
+                const key = `Option-${value}`;
+                return (
+                  <li
+                    key={key}
+                    className={classNames(
+                      'option flex items-center justify-left text-sm py-3 px-2 rounded relative transition-all hover:bg-accent-1',
+                      { 'bg-primary-1': this.isSelected(option.value) }
+                    )}
+                    onClick={() => this.handleClickOption(option)}
+                    role='option'
+                  >
+                    <span>{label}</span>
+                  </li>
+                );
+              })}
+              {optionsToRender.length === 0 && filter.length > 0 && (
+                <li className='text-sm'>Nenhuma opção foi encontrada</li>
+              )}
             </ul>
             {actions && (
               <div className='actions bg-neutral-1 border-t border-neutral-2 py-0 px-5 h-10 flex justify-end items-center gap-4'>

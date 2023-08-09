@@ -13,6 +13,20 @@ import Container from '../components/layout/container';
 import Page from '../components/layout/page';
 import { cpfMask, removeMask } from '../utils/mask';
 
+const numbersText = [
+  'Zero',
+  'Um',
+  'Dois',
+  'Três',
+  'Quatro',
+  'Cinco',
+  'Seis',
+  'Sete',
+  'Oito',
+  'Novo',
+  'Dez'
+];
+
 export default function ComponentsPage() {
   const formik = useFormik({
     initialValues: {
@@ -271,6 +285,18 @@ export default function ComponentsPage() {
             options={Array.from({ length: 5 }).map((_, index) => ({
               value: index,
               label: `Option ${index}`
+            }))}
+            placeholder='Selecione'
+          ></Select>
+          <h1 className='text-2xl'>Select multiple with actions and search</h1>
+          <Select
+            onChange={(e) => console.log(e)}
+            multiple
+            actions
+            search
+            options={numbersText.map((numberText) => ({
+              value: numberText,
+              label: numberText
             }))}
             placeholder='Selecione'
           ></Select>
