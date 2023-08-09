@@ -300,6 +300,21 @@ export default function ComponentsPage() {
             }))}
             placeholder='Selecione'
           ></Select>
+          <h1 className='text-2xl'>
+            Select multiple with actions, search and marker
+          </h1>
+          <Select
+            onChange={(e) => console.log(e)}
+            multiple
+            actions
+            search
+            marker
+            options={numbersText.map((numberText) => ({
+              value: numberText,
+              label: numberText
+            }))}
+            placeholder='Selecione'
+          ></Select>
         </section>
       </Container>
     </Page>

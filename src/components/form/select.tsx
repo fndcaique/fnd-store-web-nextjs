@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
+import { FiChevronDown } from 'react-icons/fi';
 import { twMerge } from 'tailwind-merge';
 import { arrayEquals } from '../../utils/array-equals';
 import { isDefined } from '../../utils/functions';
 import { replaceSpecialCharacters } from '../../utils/replace-special-characters';
 import Button from './button';
+import Checkbox from './checkbox';
 import { SelectOption } from './option';
 
 export type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
@@ -200,7 +202,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
 
   render() {
     const {
-      // marker,
+      marker,
       actions,
       search,
       options,
@@ -223,7 +225,6 @@ export default class Select extends React.Component<SelectProps, SelectState> {
       <div
         ref={this.ref}
         className={twMerge(classNames('select'), className)}
-        // [ngClass]="getSelectClasses()"
         role='combobox'
       >
         <div className='container relative'>
@@ -236,31 +237,29 @@ export default class Select extends React.Component<SelectProps, SelectState> {
                 : selectedOptions[0]?.value
             }
           ></select>
-          {/* {label &
-        (<label
-          // [for]="id"
-          className="label-text"
-        >
-          { label }
-        </label>)
-  } */}
           <button
-            className={classNames('input display text-left', { focus: open })}
+            className={twMerge(
+              classNames(
+                'input display group flex items-center justify-between text-left text-ellipsis overflow-hidden whitespace-nowrap',
+                { focus: open },
+                {
+                  placeholder: !display
+                }
+              )
+            )}
             onClick={this.toggleOptions}
-            // #button
             type='button'
           >
-            <p
-              // [ngClass]="{ placeholder: [null, undefined].includes(this.value) || this.value.length === 0 }"
-              className={classNames({ 'text-neutral-3': !display })}
-            >
-              {display || placeholder}
-            </p>
-            {/* <app-icon
-          [size]="18"
-          className="chevron-icon"
-          name="chevron-down"
-        ></app-icon> */}
+            {display || placeholder}
+            <FiChevronDown
+              // strokeWidth='1.5'
+              className={classNames(
+                'text-neutral-2 transition-all group-focus-within:text-accent-3',
+                {
+                  'text-accent-3 rotate-180': open
+                }
+              )}
+            />
           </button>
           <div
             className={classNames(
@@ -269,11 +268,9 @@ export default class Select extends React.Component<SelectProps, SelectState> {
                 'opacity-0 hidden': !open
               }
             )}
-            // [ngClass]="{ 'with-actions': actions }"
           >
             {search && (
               <div className='search flex overflow-hidden'>
-                {/* <app-icon name="search-custom"></app-icon> */}
                 <input
                   className='flex-1 py-3 px-5 border-none outline-none'
                   type='text'
@@ -287,22 +284,23 @@ export default class Select extends React.Component<SelectProps, SelectState> {
                 'options bg-neutral-1 cursor-pointer w-full h-fit max-h-36 flex flex-col gap-1 overflow-y-auto p-3',
                 { 'pb-1': actions }
               )}
-              // [ngClass]="{ search: search }"
             >
               {optionsToRender.map((option) => {
                 const { value, label } = option;
                 const key = `Option-${value}`;
+                const isSelected = this.isSelected(option.value);
                 return (
                   <li
                     key={key}
                     className={classNames(
-                      'option flex items-center justify-left text-sm py-3 px-2 rounded relative transition-all hover:bg-accent-1',
-                      { 'bg-primary-1': this.isSelected(option.value) }
+                      'option flex items-center justify-between gap-2 text-sm py-3 px-2 rounded relative transition-all hover:bg-accent-1',
+                      { 'bg-primary-1': isSelected }
                     )}
                     onClick={() => this.handleClickOption(option)}
                     role='option'
                   >
                     <span>{label}</span>
+                    {marker && <Checkbox checked={isSelected} />}
                   </li>
                 );
               })}
@@ -331,39 +329,4 @@ export default class Select extends React.Component<SelectProps, SelectState> {
       </div>
     );
   }
-}
-
-export function ulOptions() {
-  return (
-    <ul
-      className='options'
-      // [ngClass]="{ search: search }"
-    >
-      {/* <ng-container *ngFor="let option of getFilteredOptions()"> */}
-
-      <li
-        // [ngClass]="{ selected: isSelected(option) }"
-        className='option'
-        // (click)="handleClickOption(option)"
-        role='none'
-      >
-        <span>{/* { option.display } */}</span>
-        {/* <ng-container *ngIf="marker === 'radio'">
-          <app-radio
-            withControl="false"
-            [id]="option.value"
-            [name]="option.value"
-            [checked]="isSelected(option)"
-          />
-        </ng-container>
-        <ng-container *ngIf="marker === 'checkbox'">
-          <app-checkbox
-            withControl="false"
-            [checked]="isSelected(option)"
-          />
-        </ng-container> */}
-      </li>
-      {/* </ng-container> */}
-    </ul>
-  );
 }
