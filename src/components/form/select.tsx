@@ -240,7 +240,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
           <button
             className={twMerge(
               classNames(
-                'input display group flex items-center justify-between text-left text-ellipsis overflow-hidden whitespace-nowrap',
+                'input display group flex items-center justify-between text-left',
                 { focus: open },
                 {
                   placeholder: !display
@@ -250,11 +250,13 @@ export default class Select extends React.Component<SelectProps, SelectState> {
             onClick={this.toggleOptions}
             type='button'
           >
-            {display || placeholder}
+            <span className='flex-1 text-ellipsis overflow-hidden whitespace-nowrap'>
+              {display || placeholder}
+            </span>
             <FiChevronDown
               // strokeWidth='1.5'
               className={classNames(
-                'text-neutral-2 transition-all group-focus-within:text-accent-3',
+                'justify-self-end text-neutral-2 transition-all group-focus-within:text-accent-3',
                 {
                   'text-accent-3 rotate-180': open
                 }
