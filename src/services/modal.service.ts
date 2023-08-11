@@ -23,7 +23,9 @@ export class ModalController {
   }
 
   present = () => {
-    this.notify({ id: this.id, command: { title: 'present' } });
+    setTimeout(() => {
+      this.notify({ id: this.id, command: { title: 'present' } });
+    });
   };
   dismiss = (data: unknown = null) => {
     this.notify({ id: this.id, command: { title: 'dismiss', data } });

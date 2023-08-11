@@ -14,6 +14,7 @@ import Container from '../components/layout/container';
 import Page from '../components/layout/page';
 import Modal from '../components/modal/modal';
 import Spinner from '../components/spinner';
+import { LoadingService } from '../services/loading.service';
 import { ModalController, ModalService } from '../services/modal.service';
 import { cpfMask, removeMask } from '../utils/mask';
 
@@ -370,6 +371,18 @@ export default function ComponentsPage() {
           <Spinner />
           <p>lg</p>
           <Spinner lg />
+
+          <Button
+            onClick={() => {
+              const loading = LoadingService.present();
+              setTimeout(() => {
+                loading.dismiss();
+              }, 5000);
+            }}
+          >
+            {' '}
+            Loading 5 seconds
+          </Button>
         </section>
       </Container>
     </Page>

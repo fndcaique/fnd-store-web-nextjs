@@ -11,8 +11,6 @@ type ModalServiceWrapperState = {
   modals: ModalServiceCreateModalData[];
 };
 
-let times = 0;
-
 export default class ModalServiceWrapper extends React.Component<
   object,
   ModalServiceWrapperState
@@ -26,7 +24,6 @@ export default class ModalServiceWrapper extends React.Component<
       if (notification.id === ModalWrapperId) {
         switch (notification.command.title) {
           case 'create':
-            console.log('create modal', times++, notification);
             this.createModal(
               (notification.command as ModalServiceCreateModalCommand).data
             );
@@ -93,8 +90,6 @@ export default class ModalServiceWrapper extends React.Component<
 
   render(): React.ReactNode {
     const { modals } = this.state;
-    console.log({ modals });
-
     return (
       <div className='modal-service-wrapper'>
         {modals.map((modalData, index) => (
