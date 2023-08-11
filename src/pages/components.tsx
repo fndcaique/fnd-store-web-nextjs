@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import Button from '../components/form/button';
 import Checkbox from '../components/form/checkbox';
@@ -8,9 +9,11 @@ import Input from '../components/form/input';
 import InputMask from '../components/form/input-mask';
 import Radio from '../components/form/radio';
 import Select from '../components/form/select';
-import Textarea from '../components/form/teaxtarea';
+import Textarea, { TextareaProps } from '../components/form/teaxtarea';
 import Container from '../components/layout/container';
 import Page from '../components/layout/page';
+import Modal from '../components/modal/modal';
+import { ModalController, ModalService } from '../services/modal.service';
 import { cpfMask, removeMask } from '../utils/mask';
 
 const numbersText = [
@@ -28,6 +31,10 @@ const numbersText = [
 ];
 
 export default function ComponentsPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalControllers, setModalControllers] = useState<ModalController[]>(
+    []
+  );
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -50,6 +57,25 @@ export default function ComponentsPage() {
       alert(values);
     }
   });
+
+  const createModalWithModalService = () => {
+    const componentProps: TextareaProps = {
+      placeholder: 'Textarea criado com modal service'
+    };
+
+    const modal = ModalService.create({
+      component: Textarea,
+      componentProps
+    });
+
+    modal.onDidDismiss(({ data }) => console.log({ data }));
+
+    setModalControllers((controllers) => [...controllers, modal]);
+
+    setTimeout(() => {
+      modal.dismiss('destroy');
+    }, 10000);
+  };
   return (
     <Page>
       <Container className='flex flex-col-reverse gap-7 divide-y-2 pb-16'>
@@ -315,6 +341,28 @@ export default function ComponentsPage() {
             }))}
             placeholder='Selecione'
           ></Select>
+        </section>
+        <section className='flex flex-col items-start gap-4'>
+          <h1 className='text-2xl'>Modal</h1>
+          <Button onClick={() => setModalOpen((state) => !state)}>
+            Open modal
+          </Button>
+          <Modal open={modalOpen} onDismiss={() => setModalOpen(false)}>
+            Conteúdo do modal
+          </Modal>
+          <Button onClick={() => createModalWithModalService()}>
+            Create modal with modal service
+          </Button>
+          {modalControllers.map((controller) => (
+            <div key={controller.id} className='flex gap-4'>
+              <Button onClick={controller.present}>
+                Open modal {controller.id.replace(/\D+/g, '')}
+              </Button>
+              <Button onClick={controller.destroy}>
+                Destroy modal {controller.id.replace(/\D+/g, '')}
+              </Button>
+            </div>
+          ))}
         </section>
       </Container>
     </Page>
