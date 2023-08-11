@@ -13,6 +13,7 @@ import Textarea, { TextareaProps } from '../components/form/teaxtarea';
 import Container from '../components/layout/container';
 import Page from '../components/layout/page';
 import Modal from '../components/modal/modal';
+import Spinner from '../components/spinner';
 import { ModalController, ModalService } from '../services/modal.service';
 import { cpfMask, removeMask } from '../utils/mask';
 
@@ -71,10 +72,6 @@ export default function ComponentsPage() {
     modal.onDidDismiss(({ data }) => console.log({ data }));
 
     setModalControllers((controllers) => [...controllers, modal]);
-
-    setTimeout(() => {
-      modal.dismiss('destroy');
-    }, 10000);
   };
   return (
     <Page>
@@ -363,6 +360,16 @@ export default function ComponentsPage() {
               </Button>
             </div>
           ))}
+        </section>
+
+        <section className='flex flex-col items-start gap-4'>
+          <h1 className='text-2xl'>Spinner</h1>
+          <p>sm</p>
+          <Spinner sm />
+          <p>md</p>
+          <Spinner />
+          <p>lg</p>
+          <Spinner lg />
         </section>
       </Container>
     </Page>
