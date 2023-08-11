@@ -346,7 +346,7 @@ export default function ComponentsPage() {
             Open modal
           </Button>
           <Modal open={modalOpen} onDismiss={() => setModalOpen(false)}>
-            Conteúdo do modal
+            <p className='bg-neutral-1 rounded p-4'>Conteúdo do modal</p>
           </Modal>
           <Button onClick={() => createModalWithModalService()}>
             Create modal with modal service
@@ -371,7 +371,6 @@ export default function ComponentsPage() {
           <Spinner />
           <p>lg</p>
           <Spinner lg />
-
           <Button
             onClick={() => {
               const loading = LoadingService.present();
@@ -380,7 +379,6 @@ export default function ComponentsPage() {
               }, 5000);
             }}
           >
-            {' '}
             Loading 5 seconds
           </Button>
         </section>

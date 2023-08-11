@@ -91,7 +91,7 @@ export default class Modal extends React.Component<ModalProps> {
         <section
           className={twMerge(
             classNames(
-              'modal relative',
+              'modal relative flex flex-col',
               { 'bg-dark rounded p-6': !className },
               className
             )
